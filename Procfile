@@ -1,0 +1,1 @@
+web: nohup node bot.js &
