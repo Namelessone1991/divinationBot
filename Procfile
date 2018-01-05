@@ -1,1 +1,1 @@
-web: nohup node bot.js &
+web: npm start
