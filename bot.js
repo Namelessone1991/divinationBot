@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+var http = require('http');
 var Promise = require("bluebird");
 var randomOrg = require("random-org");
 var Jimp = require("jimp");
@@ -59,6 +60,11 @@ app.listen(port, () => {
     console.log('Our app is running on http://localhost:' + port);
 });
 
+// pings server every 15 minutes to prevent dynos from sleeping
+setInterval(() => {
+  http.get('http://aqueous-dusk-98460.herokuapp.com/');
+  console.log("Pinging");
+}, 900000);
 
 
 
