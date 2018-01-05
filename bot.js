@@ -632,6 +632,14 @@ for (var z = 0; z < commandArray.length; z++)
 
   }    
 
+
+  
+  if(message.content.includes('!geo') && ((timeRestriction.getTime() - global.globalTimer) > 4000) ){
+
+    generateSingleItem('./geo/');
+    global.globalTimer = Date.now();
+
+  }    
     
    if(message.content.includes('!divhelp') && ((timeRestriction.getTime() - global.globalTimer) > 4000))
    {
@@ -648,7 +656,8 @@ for (var z = 0; z < commandArray.length; z++)
 **conch**: It uploads the response from the Magic Conch\n\n\
 **i-ching**: It posts an I-Ching hexagram\n\n\
 **coin**: Flips a coin, and posts the result\n\n\
-**angel**: Posts a random Angelic Oracle Deck card');
+**angel**: Posts a random Angelic Oracle Deck card\n\n\
+**geo**: Posts a geomancy figure');
 
 global.globalTimer = Date.now();
 
