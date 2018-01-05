@@ -4,7 +4,7 @@ var randomOrg = require("random-org");
 var Jimp = require("jimp");
 const request = require('request');
 const client = new Discord.Client();
-
+const express = require('express');
 
 const fs = require('fs');
 
@@ -34,6 +34,33 @@ astroArray[8] = "libra";
 astroArray[9] = "scorpio";
 astroArray[10] = "sagittarius";
 astroArray[11] = "capricorn";
+
+
+const app = express();
+
+// set the port of our application
+// process.env.PORT lets the port be set by Heroku
+const port = process.env.PORT || 5000;
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+// make express look in the `public` directory for assets (css/js/img)
+app.use(express.static(__dirname + '/public'));
+
+// set the home page route
+app.get('/', (request, response) => {
+    // ejs render automatically looks in the views folder
+    response.render('index');
+});
+
+app.listen(port, () => {
+    // will echo 'Our app is running on http://localhost:5000 when run locally'
+    console.log('Our app is running on http://localhost:' + port);
+});
+
+
+
 
 
 function getDirectories(path) {
