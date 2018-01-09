@@ -41,7 +41,7 @@ const app = express();
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 80;
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -60,11 +60,7 @@ app.listen(port, () => {
     console.log('Our app is running on http://localhost:' + port);
 });
 
-// pings server every 15 minutes to prevent dynos from sleeping
-setInterval(() => {
-  http.get('http://aqueous-dusk-98460.herokuapp.com/');
-  console.log("Pinging");
-}, 900000);
+
 
 
 
@@ -691,7 +687,7 @@ for (var z = 0; z < commandArray.length; z++)
 **coin**: Flips a coin, and posts the result\n\n\
 **angel**: Posts a random Angelic Oracle Deck card\n\n\
 **geo**: Posts a geomancy figure\n\n\
-**cartomancy**: Cartomancy cards');
+**poker**: Poker playing cards');
 
 global.globalTimer = Date.now();
 
@@ -700,7 +696,7 @@ global.globalTimer = Date.now();
 
    if(message.content.includes('!listtarots')&& ((timeRestriction.getTime() - global.globalTimer) > 4000)){
 
-    message.channel.send('**THESE ARE THE CURRENTLY AVAILABLE DECKS**\n\n'+tarotDecksArray+"");
+    message.channel.send('**THESE ARE THE CURRENTLY AVAILABLE DECKS, CURRENTLY THERE ARE '+tarotDecksArray.length+'**\n\n'+tarotDecksArray+"");
     global.globalTimer = Date.now();
 
     
