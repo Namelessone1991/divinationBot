@@ -690,7 +690,8 @@ for (var z = 0; z < commandArray.length; z++)
 **i-ching**: It posts an I-Ching hexagram\n\n\
 **coin**: Flips a coin, and posts the result\n\n\
 **angel**: Posts a random Angelic Oracle Deck card\n\n\
-**geo**: Posts a geomancy figure');
+**geo**: Posts a geomancy figure\n\n\
+**cartomancy**: Cartomancy cards');
 
 global.globalTimer = Date.now();
 
