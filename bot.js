@@ -724,4 +724,4 @@ global.globalTimer = Date.now();
     }
 });
 
-client.login('Mzg4Mzk4MDgyMzY4NDcxMDUw.DQsjtQ.vJtc6yRHsvo3J3AL_KC8aU9vsSA');
+client.login('insertTokenHere');
