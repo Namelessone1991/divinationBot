@@ -144,6 +144,7 @@ global.globalTimer = global.date.getTime();
 
 client.on('ready', () => {
   console.log('Bot is running!');
+  client.user.setGame("!divhelp for help");
 });
 
 client.on('message', message => {
@@ -724,4 +725,12 @@ global.globalTimer = Date.now();
     }
 });
 
-client.login('insertTokenHere');
+client.login('');
+
+process.stdin.resume();
+
+process.on('SIGINT', function () {
+  console.log('Got SIGINT.  Press Control-D to exit.');
+  client.destroy(); 
+  process.exit();
+});
