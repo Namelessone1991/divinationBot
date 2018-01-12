@@ -757,6 +757,8 @@ global.globalTimer = Date.now();
 
 client.login('');
 
+//made simple changes
+
 process.stdin.resume();
 
 process.on('SIGINT', function () {
