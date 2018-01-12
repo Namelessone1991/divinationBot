@@ -8,6 +8,7 @@ const client = new Discord.Client();
 const express = require('express');
 
 const proverbs = require('./proverbs.js');
+const key = require('./key.js');
 
 const fs = require('fs');
 
@@ -519,7 +520,12 @@ for (var z = 0; z < commandArray.length; z++)
 
 
   
+  if (message.content.includes('!dice')&&((timeRestriction.getTime() - global.globalTimer) > 4000)) {
 
+    generateSingleItem('./dice/');
+    global.globalTimer = Date.now();
+
+  }
 
 
 
@@ -691,7 +697,8 @@ for (var z = 0; z < commandArray.length; z++)
 **angel**: Posts a random Angelic Oracle Deck card\n\n\
 **geo**: Posts a Geomancy figure\n\n\
 **poker**: Poker playing cards\n\n\
-**cookie**: Get a Chinese Fortune Cookie');
+**cookie**: Get a Chinese Fortune Cookie\n\n\
+**dice**: Roll a die');
 
 global.globalTimer = Date.now();
 
@@ -755,7 +762,7 @@ global.globalTimer = Date.now();
     
 });
 
-client.login('');
+client.login(key.key);
 
 //made simple changes
 
