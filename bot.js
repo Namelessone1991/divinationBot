@@ -7,6 +7,8 @@ const request = require('request');
 const client = new Discord.Client();
 const express = require('express');
 
+const proverbs = require('./proverbs.js');
+
 const fs = require('fs');
 
 const tarotFolder = "./tarot/";
@@ -687,8 +689,9 @@ for (var z = 0; z < commandArray.length; z++)
 **i-ching**: It posts an I-Ching hexagram\n\n\
 **coin**: Flips a coin, and posts the result\n\n\
 **angel**: Posts a random Angelic Oracle Deck card\n\n\
-**geo**: Posts a geomancy figure\n\n\
-**poker**: Poker playing cards');
+**geo**: Posts a Geomancy figure\n\n\
+**poker**: Poker playing cards\n\n\
+**cookie**: Get a Chinese Fortune Cookie');
 
 global.globalTimer = Date.now();
 
@@ -709,13 +712,15 @@ global.globalTimer = Date.now();
 
 
 
-  for (var i = 0; i < astroArray.length; i++)
+  for (var i = 0; i < astroArray.length; i++) {
 
     if (message.content.includes("!astro " + astroArray[i]) && ((timeRestriction.getTime() - global.globalTimer) > 4000)){
-      request('http://sandipbgt.com/theastrologer/api/horoscope/' + astroArray[i] + '/today/', { json: true }, (err, res, body) => {
+      request('http://widgets.fabulously40.com/horoscope.json?sign=' + astroArray[i], { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
-        message.channel.send("**"+body.sunsign+"** :"+body.horoscope);
+         //console.log('**'+body.horoscope.sign + '** :'+body.horoscope.horoscope);
+
+         message.channel.send('**'+body.horoscope.sign + '**: '+body.horoscope.horoscope);
        
 
 
@@ -723,6 +728,31 @@ global.globalTimer = Date.now();
 
       global.globalTimer = Date.now();
     }
+
+
+  }
+
+
+  if (message.content.includes("!cookie") && ((timeRestriction.getTime() - global.globalTimer) > 4000)){
+    request("https://www.random.org/integers/?num=1&min=0&max=" + (proverbs.proverbArray.length - 1) + "&col=1&base=10&format=plain&rnd=new", { json: true }, (err, res, body) => {
+      if (err) { return console.log(err); }
+
+
+      var copy = body.toString().replace(/(\r\n|\n|\r)/gm, " ").split(" ");
+
+
+       message.channel.send(proverbs.proverbArray[copy]);
+     
+
+
+    });
+
+    global.globalTimer = Date.now();
+  }
+
+
+
+    
 });
 
 client.login('');
