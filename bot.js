@@ -203,7 +203,7 @@ client.on('message', message => {
        } 
 
 
-      if(replyMessage == "<@378462544421060608> BE GONE THOT!")
+      if(replyMessage == key.thotUsers[1]+" BE GONE THOT!")
       {
 
         message.channel.send(replyMessage,{
@@ -494,7 +494,7 @@ for (var z = 0; z < commandArray.length; z++)
     if (message.content.includes('!thot') && (message.author.toString() === key.thotUsers[i].toString())&& ((timeRestriction.getTime() - global.globalTimer) > 4000)) 
     {
 
-      generateSingleItem(thotFolder, "<@378462544421060608> BE GONE THOT!" );
+      generateSingleItem(thotFolder, key.thotUsers[1]+" BE GONE THOT!" );
       global.globalTimer = Date.now();
 
     }
