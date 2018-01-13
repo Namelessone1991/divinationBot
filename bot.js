@@ -487,20 +487,11 @@ for (var z = 0; z < commandArray.length; z++)
   }
 
 
-  var thotUsers = [];
-
-  thotUsers[0] = "<@217140895999459328>"; // HM aka dev/null's ID
-  thotUsers[1] = "<@378462544421060608>"; /* Candy kitten meow
-     aka that CIS WHITE FEMALE who hurts my feelies all the time ;__; 
-     */
-
-  thotUsers[2] = "<@140528497197056000>"; //XT
-  thotUsers[3] = "<@158016121721585665>"; // Habit
-  thotUsers[4] = "<@369983964187983876>"; //Fortune
+  
 
 
-  for (var i = 0; i < thotUsers.length; i++) {
-    if (message.content.includes('!thot') && (message.author.toString() === thotUsers[i].toString())&& ((timeRestriction.getTime() - global.globalTimer) > 4000)) 
+  for (var i = 0; i < key.thotUsers.length; i++) {
+    if (message.content.includes('!thot') && (message.author.toString() === key.thotUsers[i].toString())&& ((timeRestriction.getTime() - global.globalTimer) > 4000)) 
     {
 
       generateSingleItem(thotFolder, "<@378462544421060608> BE GONE THOT!" );
@@ -617,8 +608,8 @@ for (var z = 0; z < commandArray.length; z++)
 
   } 
   
-  for (var i = 0; i < thotUsers.length; i++) {
-  if(message.content.includes('!tumblradd') &&  ((timeRestriction.getTime() - global.globalTimer) > 4000) && (message.author.toString() === thotUsers[i].toString()) ){
+  for (var i = 0; i < key.thotUsers.length; i++) {
+  if(message.content.includes('!tumblradd') &&  ((timeRestriction.getTime() - global.globalTimer) > 4000) && (message.author.toString() === key.thotUsers[i].toString()) ){
   
 
     tumblrArray.push(message.content.replace("!tumblradd", ""));
