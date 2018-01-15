@@ -308,12 +308,6 @@ client.on('message', message => {
                   .write(filePath + '/spread/overlayJimp.jpg');
 
 
-                message.reply("Here is your spread", {
-                  file: filePath + "/spread/overlayJimp.jpg"
-                });
-
-
-
 
               });
           }
@@ -322,9 +316,19 @@ client.on('message', message => {
             return;
           }
 
+        }).then(function(data){
+
+
+          message.reply("Here is your spread", {
+            file: filePath + "/spread/overlayJimp.jpg"
+          });
+
+
         }).catch(function (except) {
 
           console.log('unable to handle the promises ' + except);
+
+          
 
         });
 
@@ -420,10 +424,7 @@ client.on('message', message => {
 
 
 
-                message.reply("Here is your spread", {
-                  file: filePath+'/spread/overlayJimp7.jpg'
-                });
-
+              
 
               });
           }
@@ -431,6 +432,14 @@ client.on('message', message => {
             console.log("unable to write in the overlay");
             return;
           }
+
+        }).then(function(data){
+        
+          message.reply("Here is your spread", {
+            file: filePath+'/spread/overlayJimp7.jpg'
+          });
+
+
 
         }).catch(function (except) {
 
