@@ -173,19 +173,28 @@ try{
 
     files = files.filter(item => item !== "spread");
 
+    //(files.length - 1)
 
-
-    request("https://www.random.org/integers/?num=1&min=0&max=" + (files.length - 1) + "&col=1&base=10&format=plain&rnd=new", (err, res, body) => {
+    request("https://www.random.org/integers/?num=1&min=0&max=" + (-1) + "&col=1&base=10&format=plain&rnd=new", (err, res, body) => {
       if (err) { return client.users.get('217140895999459328')
       
       .send('there was an error getting data from random.org in generateSingleItem  '+err); }
 
-      
+
+      console.log('error values '+err);
 
 
     var copy = body.toString().replace(/(\r\n|\n|\r)/gm, " ").split(" ");
 
     copy.pop();
+
+    if (isNaN(copy))
+    {
+      return client.users.get('217140895999459328')
+      
+      .send('there was an error getting data from random.org in generateSingleItem Not a Number ');
+
+    }
 
 
     var randomInts = [];
@@ -275,6 +284,18 @@ try{
 
         var copy = body.toString().split(" ");
         console.log('Pop value ' + copy);
+
+
+        if (isNaN(copy))
+    {
+      return client.users.get('217140895999459328')
+      
+      .send('there was an error getting data from random.org in cardSpread Not a Number ');
+
+    }
+
+
+
 
         var randomInts = [];
 
@@ -393,6 +414,17 @@ try{
 
         var copy = body.toString().split(" ");
         
+        if (isNaN(copy))
+    {
+      return client.users.get('217140895999459328')
+      
+      .send('there was an error getting data from random.org in cardSpread7, Not a Number ');
+
+    }
+
+
+   
+
 
         var randomInts = [];
 
