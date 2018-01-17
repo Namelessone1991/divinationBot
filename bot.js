@@ -173,10 +173,14 @@ try{
 
     files = files.filter(item => item !== "spread");
 
-    //(files.length - 1)
+    
 
-    request("https://www.random.org/integers/?num=1&min=0&max=" + (-1) + "&col=1&base=10&format=plain&rnd=new", (err, res, body) => {
-      if (err) { return client.users.get('217140895999459328')
+    request("https://www.random.org/integers/?num=1&min=0&max=" + (files.length -1) + "&col=1&base=10&format=plain&rnd=new", (err, res, body) => {
+      if (err) { 
+        
+        message.reply('There was an error in the bot, <@217140895999459328> has been notified of the issue');
+
+        return client.users.get('217140895999459328')
       
       .send('there was an error getting data from random.org in generateSingleItem  '+err); }
 
@@ -188,8 +192,10 @@ try{
 
     copy.pop();
 
-    if (isNaN(copy))
+    if (isNaN(copy[0]))
     {
+
+      message.reply('There was an error in the bot, <@217140895999459328> has been notified of the issue');
       return client.users.get('217140895999459328')
       
       .send('there was an error getting data from random.org in generateSingleItem Not a Number ');
@@ -249,6 +255,7 @@ try{
 
 } catch(e){
 
+  message.reply('There was an error in the bot, <@217140895999459328> has notified of the issue');
 
   return client.users.get('217140895999459328')
         
@@ -276,7 +283,12 @@ try{
 
 
       request("https://www.random.org/integer-sets/?sets=1&num=3&min=0&max=" + (files.length - 1) + "&order=index&format=plain&rnd=new", (err, res, body) => {
-        if (err) { return client.users.get('217140895999459328')
+        if (err) { 
+          
+          
+          message.reply('There was an error in the bot, <@217140895999459328> has been notified of the issue');
+          
+          return client.users.get('217140895999459328')
         
         .send('there was an error getting data from random.org in the cardspread function  '+err); }
 
@@ -286,8 +298,11 @@ try{
         console.log('Pop value ' + copy);
 
 
-        if (isNaN(copy))
+        if (isNaN(copy[0]))
     {
+
+      message.reply('There was an error in the bot, <@217140895999459328> has been notified of the issue');
+
       return client.users.get('217140895999459328')
       
       .send('there was an error getting data from random.org in cardSpread Not a Number ');
@@ -369,6 +384,8 @@ try{
 
         }).catch(function (except) {
 
+          message.reply('There was an error in the bot, <@217140895999459328> has been notified of the issue');
+
           console.log('unable to handle the promises ' + except);
 
           return client.users.get('217140895999459328')
@@ -404,6 +421,8 @@ try{
       request("https://www.random.org/integer-sets/?sets=1&num=7&min=0&max=" + (files.length - 1) + "&order=index&format=plain&rnd=new", (err, res, body) => {
         if (err) { 
 
+          message.reply('There was an error in the bot, <@217140895999459328> has notified of the issue');
+
           return client.users.get('217140895999459328')
         
           .send('there was an error getting numners from random.org in Spread7 '+err);
@@ -414,8 +433,11 @@ try{
 
         var copy = body.toString().split(" ");
         
-        if (isNaN(copy))
+        if (isNaN(copy[0]))
     {
+
+      message.reply('There was an error in the bot, <@217140895999459328> has notified of the issue');
+
       return client.users.get('217140895999459328')
       
       .send('there was an error getting data from random.org in cardSpread7, Not a Number ');
@@ -506,6 +528,8 @@ try{
         }).catch(function (except) {
 
           console.log('unable to handle the promises ' + except);
+
+          message.reply('There was an error in the bot, <@217140895999459328> has notified of the issue');
 
           return client.users.get('217140895999459328')
         
