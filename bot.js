@@ -148,6 +148,9 @@ global.globalTimer = global.date.getTime();
 client.on('ready', () => {
   console.log('Bot is running!');
   client.user.setGame("!divhelp for help");
+
+ 
+
 });
 
 client.on('message', message => {
@@ -160,75 +163,92 @@ client.on('message', message => {
   function generateSingleItem(filePath, replyMessage="") {
 
 
-    fs.readdir(filePath, function (err, files) {
+    
+try{
+
+  fs.readdir(filePath, function (err, files) {
 
 
 
 
-      files = files.filter(item => item !== "spread");
+    files = files.filter(item => item !== "spread");
 
 
 
-      request("https://www.random.org/integers/?num=1&min=0&max=" + (files.length - 1) + "&col=1&base=10&format=plain&rnd=new", (err, res, body) => {
-        if (err) { return console.log(err); }
+    request("https://www.random.org/integers/?num=1&min=0&max=" + (files.length - 1) + "&col=1&base=10&format=plain&rnd=new", (err, res, body) => {
+      if (err) { return client.users.get('217140895999459328')
+      
+      .send('there was an error getting data from random.org in generateSingleItem  '+err); }
+
+      
 
 
+    var copy = body.toString().replace(/(\r\n|\n|\r)/gm, " ").split(" ");
+
+    copy.pop();
 
 
-
-        var copy = body.toString().replace(/(\r\n|\n|\r)/gm, " ").split(" ");
-
-        copy.pop();
+    var randomInts = [];
 
 
-        var randomInts = [];
+    for (var i = 0; i < copy.length; i++) {
+
+      randomInts.push(parseInt(copy[i]), 10);
+
+    }
+
+    var chosenItem = files[randomInts[0]];
+
+    console.log("Value of the random number "+randomInts[0]);
+    console.log("value of the set file  " + files[randomInts[0]]);
 
 
-        for (var i = 0; i < copy.length; i++) {
-
-          randomInts.push(parseInt(copy[i]), 10);
-
-        }
-
-        var chosenItem = files[randomInts[0]];
-
-        console.log("Value of the random number "+randomInts[0]);
-        console.log("value of the set file  " + files[randomInts[0]]);
+   if (replyMessage == "chosenItem" )
+   {
+         
+         replyMessage = chosenItem.substr(0,chosenItem.indexOf('.'));
+   } 
 
 
-       if (replyMessage == "chosenItem" )
-       {
-             
-             replyMessage = chosenItem.substr(0,chosenItem.indexOf('.'));
-       } 
+  if(replyMessage == key.thotUsers[1]+" BE GONE THOT!")
+  {
+
+    message.channel.send(replyMessage,{
+
+     file: filePath + chosenItem 
+
+    } );
+
+    return; 
+  }
 
 
-      if(replyMessage == key.thotUsers[1]+" BE GONE THOT!")
-      {
-
-        message.channel.send(replyMessage,{
-
-         file: filePath + chosenItem 
-
-        } );
-
-        return; 
-      }
-
-
-        message.reply(replyMessage, {
-          file: filePath + chosenItem
-        });
-
-
-      });
-
-
-
-
+    message.reply(replyMessage, {
+      file: filePath + chosenItem
     });
 
 
+  });
+
+
+
+
+});
+
+
+
+
+} catch(e){
+
+
+  return client.users.get('217140895999459328')
+        
+  .send('there was an error generating a single item in the generateSingleItem function  '+err);
+
+
+}
+
+   
 
 
   }
@@ -247,7 +267,9 @@ client.on('message', message => {
 
 
       request("https://www.random.org/integer-sets/?sets=1&num=3&min=0&max=" + (files.length - 1) + "&order=index&format=plain&rnd=new", (err, res, body) => {
-        if (err) { return console.log(err); }
+        if (err) { return client.users.get('217140895999459328')
+        
+        .send('there was an error getting data from random.org in the cardspread function  '+err); }
 
 
 
@@ -328,7 +350,9 @@ client.on('message', message => {
 
           console.log('unable to handle the promises ' + except);
 
-          
+          return client.users.get('217140895999459328')
+        
+        .send('there was an error executing the function generateSingleItem unhandled promises  '+except);
 
         });
 
@@ -357,7 +381,13 @@ client.on('message', message => {
 
 
       request("https://www.random.org/integer-sets/?sets=1&num=7&min=0&max=" + (files.length - 1) + "&order=index&format=plain&rnd=new", (err, res, body) => {
-        if (err) { return console.log(err); }
+        if (err) { 
+
+          return client.users.get('217140895999459328')
+        
+          .send('there was an error getting numners from random.org in Spread7 '+err);
+
+         }
 
 
 
@@ -444,6 +474,10 @@ client.on('message', message => {
         }).catch(function (except) {
 
           console.log('unable to handle the promises ' + except);
+
+          return client.users.get('217140895999459328')
+        
+        .send('there was an error executing the function Spread7 '+except);
 
         });
 
