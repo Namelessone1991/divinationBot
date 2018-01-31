@@ -334,7 +334,7 @@ try{
 
       return client.users.get('217140895999459328')
       
-      .send('there was an error getting data from random.org in cardSpread Not a Number ');
+      .send('there was an error getting data from random.org in cardSpread Not a Number ' + copy[0] );
 
     }
 
@@ -469,7 +469,7 @@ try{
 
       return client.users.get('217140895999459328')
       
-      .send('there was an error getting data from random.org in cardSpread7, Not a Number ');
+      .send('there was an error getting data from random.org in cardSpread7, Not a Number '+copy[0]);
 
     }
 
