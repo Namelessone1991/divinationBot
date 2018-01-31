@@ -141,7 +141,12 @@ global.date = new Date();
 global.globalTimer = global.date.getTime();
 
 
+function getRandomInt(max)
+{
 
+  return Math.floor(Math.random() * max); 
+
+}
 
 
 
@@ -190,27 +195,51 @@ try{
 
     var copy = body.toString().replace(/(\r\n|\n|\r)/gm, " ").split(" ");
 
-    copy.pop();
+    //copy.pop();
 
-    if (isNaN(copy[0]))
-    {
+    console.log('copy value '+copy);
 
-      message.reply('There was an error in the bot, <@217140895999459328> has been notified of the issue');
-      return client.users.get('217140895999459328')
-      
-      .send('there was an error getting data from random.org in generateSingleItem Not a Number ');
-
-    }
+    
 
 
     var randomInts = [];
 
+    if (isNaN(copy[0]))
+    {
 
+      //message.reply('There was an error in the bot, <@217140895999459328> has been notified of the issue');
+      //return client.users.get('217140895999459328')
+      
+     // .send('there was an error getting data from random.org in generateSingleItem Not a Number ');
+
+     randomInts.push(getRandomInt(files.length));
+
+     client.users.get('217140895999459328')
+      
+     .send('Fallback method was called ');
+
+    }
+
+   else {
+   
+    
     for (var i = 0; i < copy.length; i++) {
 
       randomInts.push(parseInt(copy[i]), 10);
 
+     
+
     }
+
+    client.users.get('217140895999459328')
+      
+    .send('Normal method was called ');
+
+   }
+
+
+
+    
 
     var chosenItem = files[randomInts[0]];
 
@@ -529,7 +558,7 @@ try{
 
           console.log('unable to handle the promises ' + except);
 
-          message.reply('There was an error in the bot, <@217140895999459328> has notified of the issue');
+          message.reply('There was an error in the bot, <@217140895999459328> has been notified of the issue');
 
           return client.users.get('217140895999459328')
         
@@ -620,7 +649,7 @@ for (var z = 0; z < commandArray.length; z++)
 
 
 
-
+/*
   if (message.content.includes('!rune')&&((timeRestriction.getTime() - global.globalTimer) > 4000)) {
 
     generateSingleItem(runeFolder);
@@ -628,7 +657,7 @@ for (var z = 0; z < commandArray.length; z++)
 
   }
 
-  
+  */ 
 
 
   for (var i = 0; i < tarotDecksArray.length; i++) {
