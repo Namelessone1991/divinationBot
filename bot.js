@@ -214,9 +214,9 @@ try{
 
      randomInts.push(getRandomInt(files.length));
 
-     client.users.get('217140895999459328')
+     //client.users.get('217140895999459328')
       
-     .send('Fallback method was called ');
+     //.send('Fallback method was called ');
 
     }
 
@@ -231,9 +231,9 @@ try{
 
     }
 
-    client.users.get('217140895999459328')
+  //  client.users.get('217140895999459328')
       
-    .send('Normal method was called ');
+   // .send('Normal method was called ');
 
    }
 
