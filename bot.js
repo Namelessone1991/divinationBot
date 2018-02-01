@@ -44,7 +44,7 @@ const app = express();
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
-const port = process.env.PORT || 22;
+const port = process.env.PORT || 8080;
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
