@@ -782,6 +782,16 @@ for (var z = 0; z < commandArray.length; z++)
 
 
 
+  if(message.content.includes('!lewd') && ((timeRestriction.getTime() - global.globalTimer) > 4000) ){
+
+    generateSingleItem('./lewd/');
+    global.globalTimer = Date.now();
+
+  }    
+
+
+
+
   if(message.content.includes('!angel') && ((timeRestriction.getTime() - global.globalTimer) > 4000) ){
 
     generateSingleItem('./angel/',"chosenItem");
@@ -817,7 +827,8 @@ for (var z = 0; z < commandArray.length; z++)
 **geo**: Posts a Geomancy figure\n\n\
 **poker**: Poker playing cards\n\n\
 **cookie**: Get a Chinese Fortune Cookie\n\n\
-**dice**: Roll a die');
+**dice**: Roll a die\n\n\
+**lewd**: DON\'T IT\'S LEWD ');
 
 global.globalTimer = Date.now();
 
