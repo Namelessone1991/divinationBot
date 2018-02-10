@@ -226,7 +226,7 @@ try{
     for (var i = 0; i < copy.length; i++) {
 
       randomInts.push(parseInt(copy[i]), 10);
-
+      console.log('Values of the copydata '+copy[i]);
      
 
     }
@@ -347,6 +347,7 @@ try{
         for (var i = 0; i < copy.length; i++) {
 
           randomInts.push(parseInt(copy[i], 10));
+          console.log('Values of the copydata '+copy[i]);
 
         }
 
@@ -483,7 +484,7 @@ try{
         for (var i = 0; i < copy.length; i++) {
 
           randomInts.push(parseInt(copy[i], 10));
-
+          console.log('Values of the copydata '+copy[i]);
         }
 
 
