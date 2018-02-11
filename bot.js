@@ -195,7 +195,7 @@ try{
 
     var copy = body.toString().replace(/(\r\n|\n|\r)/gm, " ").split(" ");
 
-    //copy.pop();
+    copy.pop();
 
     console.log('copy value '+copy);
 
