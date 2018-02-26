@@ -12,6 +12,10 @@ const key = require('./key.js');
 
 const fs = require('fs');
 
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('database.db');
+
+
 const tarotFolder = "./tarot/";
 const conchFolder = "./magicConch/";
 const thotFolder = "./thot/";
@@ -627,6 +631,84 @@ for (var z = 0; z < commandArray.length; z++)
       global.globalTimer = Date.now();
 
     }
+
+
+    if (message.content.includes('!addtumblr') && (message.author.toString() === key.thotUsers[i].toString())&& ((timeRestriction.getTime() - global.globalTimer) > 4000)) 
+    {
+
+      db.serialize(function() {
+        
+      
+       db.run(`INSERT INTO tumblrquotes VALUES(?)`,message.content.replace('!addtumblr',''), function(err) {
+        if (err) {
+          return console.log(err.message);
+          message.reply('Something went wrong highly trained monkeys have been dispatched to solve the issue');   
+
+        }
+          else{
+
+              message.reply('your quote \''+message.content.replace('!addtumblr','') + '\' has been added to the database');
+          }
+
+       });
+
+       db.each("SELECT rowid AS id, quote FROM tumblrquotes", function(err, row) {
+        console.log('The values that exis in the database are: '+row.id + ": " + row.quote);
+    });
+
+      
+      }); 
+
+
+     // db.close(); 
+
+      global.globalTimer = Date.now();
+
+    }
+
+    if (message.content.includes('!tumblrquote') && (message.author.toString() === key.thotUsers[i].toString())&& ((timeRestriction.getTime() - global.globalTimer) > 4000)) 
+    {
+      
+      db.serialize(function() {
+
+      db.get("SELECT rowid AS id from tumblrquotes ORDER BY rowid DESC LIMIT 1", function (err, row){
+
+        console.log('The value of the id is '+row.id);
+
+        console.log('rand value'+(getRandomInt(row.id)+1));
+
+
+        db.get("SELECT quote FROM tumblrquotes WHERE rowid ="+(getRandomInt(row.id)+1),function(err, row){
+
+        
+                message.reply(row.quote);
+        });
+
+
+         
+
+      });
+
+        /*var index = getRandomInt();
+         
+        db.each("SELECT rowid AS id, quote FROM tumblrquotes", function(err, row) {
+          console.log('The values that exis in the database are: '+row.id + ": " + row.quote);
+       
+
+      }); */ 
+
+
+      });
+
+      //db.close(); 
+
+      global.globalTimer = Date.now();
+      
+    }  
+
+
+
+
   }
 
 
