@@ -638,8 +638,11 @@ for (var z = 0; z < commandArray.length; z++)
 
       db.serialize(function() {
         
-      
-       db.run(`INSERT INTO tumblrquotes VALUES(?)`,message.content.replace('!addtumblr',''), function(err) {
+         var cleanQuote = message.content.replace('!addtumblr','');
+
+      if(cleanQuote.length > 20){
+
+       db.run(`INSERT INTO tumblrquotes VALUES(?)`,mysql_real_escape_string(cleanQuote), function(err) {
         if (err) {
           return console.log(err.message);
           message.reply('Something went wrong highly trained monkeys have been dispatched to solve the issue');   
@@ -647,10 +650,16 @@ for (var z = 0; z < commandArray.length; z++)
         }
           else{
 
-              message.reply('your quote \''+message.content.replace('!addtumblr','') + '\' has been added to the database');
+              message.reply('your quote \''+cleanQuote + '\' has been added to the database');
           }
 
        });
+
+      }
+      else{
+
+         message.reply('Write something longer, nothing was added to the database');
+      }
 
        db.each("SELECT rowid AS id, quote FROM tumblrquotes", function(err, row) {
         console.log('The values that exis in the database are: '+row.id + ": " + row.quote);
