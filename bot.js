@@ -675,6 +675,52 @@ for (var z = 0; z < commandArray.length; z++)
 
     }
 
+    if (message.content.includes('!addwwcd') && (message.author.toString() === key.thotUsers[i].toString())&& ((timeRestriction.getTime() - global.globalTimer) > 4000)) 
+    {
+
+      db.serialize(function() {
+        
+         var cleanQuote = message.content.replace('!addwwcd','');
+
+      if(cleanQuote.length > 20){
+
+       db.run(`INSERT INTO wwcd VALUES(?)`,mysql_real_escape_string(cleanQuote), function(err) {
+        if (err) {
+          return console.log(err.message);
+          message.reply('Something went wrong highly trained monkeys have been dispatched to solve the issue');   
+
+        }
+          else{
+
+              message.reply('your quote \''+cleanQuote + '\' has been added to the database');
+          }
+
+       });
+
+      }
+      else{
+
+         message.reply('Write something longer, nothing was added to the database');
+      }
+
+       db.each("SELECT rowid AS id, candyQuotes FROM wwcd", function(err, row) {
+        console.log('The values that exis in the database are: '+row.id + ": " + row.quote);
+    });
+
+      
+      }); 
+
+
+     // db.close(); 
+
+      global.globalTimer = Date.now();
+
+    }
+
+
+
+
+
     if (message.content.includes('!tumblrquote') && (message.author.toString() === key.thotUsers[i].toString())&& ((timeRestriction.getTime() - global.globalTimer) > 4000)) 
     {
       
@@ -714,6 +760,50 @@ for (var z = 0; z < commandArray.length; z++)
       global.globalTimer = Date.now();
       
     }  
+
+
+    if (message.content.includes('!wwcd') && (message.author.toString() === key.thotUsers[i].toString())&& ((timeRestriction.getTime() - global.globalTimer) > 4000)) 
+    {
+      
+      db.serialize(function() {
+
+      db.get("SELECT rowid AS id from wwcd ORDER BY rowid DESC LIMIT 1", function (err, row){
+
+        console.log('The value of the id is '+row.id);
+
+        console.log('rand value'+(getRandomInt(row.id)+1));
+
+
+        db.get("SELECT candyQuotes FROM wwcd WHERE rowid ="+(getRandomInt(row.id)+1),function(err, row){
+
+        
+                message.reply(row.quote);
+        });
+
+
+         
+
+      });
+
+        /*var index = getRandomInt();
+         
+        db.each("SELECT rowid AS id, quote FROM tumblrquotes", function(err, row) {
+          console.log('The values that exis in the database are: '+row.id + ": " + row.quote);
+       
+
+      }); */ 
+
+
+      });
+
+      //db.close(); 
+
+      global.globalTimer = Date.now();
+      
+    }  
+
+
+
 
 
 
