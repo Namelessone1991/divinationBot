@@ -774,12 +774,12 @@ for (var z = 0; z < commandArray.length; z++)
         console.log('rand value'+(getRandomInt(row.id)+1));
 
 
-        db.get("SELECT candyQuotes FROM wwcd WHERE rowid ="+(getRandomInt(row.id)+1),function(err, row1){
+        db.get("SELECT candyQuotes FROM wwcd WHERE rowid ="+(getRandomInt(row.id)+1),function(err, row){
 
         
-                message.reply(row1.quote);
+                message.reply(row.candyQuotes);
 
-                console.log('value of the quote'+row1.quote);
+                console.log('value of the quote'+row.candyQuotes);
         });
 
 
